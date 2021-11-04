@@ -15,7 +15,7 @@ class LinkedList:
 
     def wypisz(self):
         currNode = self.head
-        while currNode is not None:
+        while currNode != None:
             print(currNode.value)
             currNode = currNode.next
 
@@ -25,6 +25,11 @@ class LinkedList:
         NewNode.next = self.head
         self.head = NewNode
 
+    def str(self):
+        currNode = self.head
+        while currNode != None:
+            str(currNode.value)
+            currNode = currNode.next    #   ????????????????????????????????????????
 
     def append(self, value2):
         NewNode = Node(value2)
@@ -49,11 +54,13 @@ class LinkedList:
         assert(false)
         return 0
 
-    def insert(self, value3, afNode):
-
+    def insert(self, value3, after):
+        y = int(after)
         NewNode = Node(value3)
-        NewNode.next = afNode.next
-        afNode.next = NewNode
+        currNode = self.head
+        while(currNode.next != y):
+            NewNode.next = after.next
+            after.next = NewNode
 
     def pop(self):
         if (self.head != None):
@@ -75,48 +82,107 @@ class LinkedList:
             currNode = currNode.next
         afNode.next = None
 
+    def __str__(self):
+        currNode = self.head
+        values = []
+        print(str(currNode.value), end='')
+        currNode = currNode.next
+        while currNode != None:
+            values.append(str(currNode.value))
+            print(' ->', str(currNode.value), end='')
+            currNode = currNode.next
+
+    def __len__(self):
+            checkNode = self.head
+            licznik = 1
+            while(checkNode.next != None):
+                checkNode = checkNode.next
+                licznik += 1
+            print(licznik)
+
+                ############# TESTY ################
+
+list_ = LinkedList()             #test1
+
+assert list_.head == None       # Nowa lista jest pusta
+
+list_.push(1)
+list_.push(0)                   #Metoda push umieszcza elementy na początku listy
+str(list_)
+# assert str(list_) == '0 -> 1'
+
+list_.append(9)                  #Metoda append umieszcza elementy na końcu listy
+list_.append(10)
+# assert str(list_) == '0 -> 1 -> 9 -> 10'
+
+# middle_node = list_.node(at=1)          #Element o indeksie 2 po wywołaniu metody insert
+# list_.insert(5, after=middle_node)    # będzie miał wartość 5
+# # assert str(list_) == '0 -> 1 -> 5 -> 9 -> 10'
+#
+# first_element = list_.node(at=0)
+# returned_first_element = list_.pop()    #Metoda remove_last usuwa i zwraca ostatni element listy
+# assert first_element.value == returned_first_element
+#
+# last_element = list_.node(at=3)         #Metoda remove_last usuwa i zwraca ostatni element listy
+# returned_last_element = list_.remove_last()
+# print(last_element.value)
+# assert last_element.value == returned_last_element
+# assert str(list_) == '1 -> 5 -> 9'
 
 
 
-list1 = LinkedList()        # assert list1.head == None # Nowa lista jest pusta
 
-# list1.head = Node('raz')
+
+
+
+
+
+
+
+
+
+
+
+
+# list_.head = Node('raz')
 # n2 = Node('dwa')
 # n3 = Node('trzy')         #przykladowe wartosci
-# list1.head.next = n2
+# list_.head.next = n2
 # n2.next = n3
 
-list1.head = Node(1)
-n2 = Node(2)
-n3 = Node(3)         #przykladowe wartosci 2
-list1.head.next = n2
-n2.next = n3
+# list_.head = Node(1)
+# n2 = Node(2)
+# n3 = Node(3)         #test wartosci 2
+# list_.head.next = n2
+# n2.next = n3
 
-# list1.push(1)
-# list1.push(0)      #sprawdzenie push
-# list1.push(-1)
-# list1.append(2)
+list_.push(1)
+list_.push(0)      #test push
+# list_.push(-1)
+# list_.append(2)
 
-# middleNode = list1.node(at=1)
-# print(middleNode)                 #sprawdzenie insert
-# list1.insert(5, n2)
+# middleNode = list_.node(at=1)
+# print(middleNode)                 #test insert
+# list_.insert(5, n2)
 
-# first_element = list1.node(at=0)
+# first_element = list_.node(at=0)
 # print(first_element)
-# returned_first_element = list1.pop()   #sprawdzenie pop
+# returned_first_element = list_.pop()           #test pop
 # print(returned_first_element)
 # assert first_element == returned_first_element
 
 
-# last_element = list1.node(at=2)
+# last_element = list_.node(at=2)
 # print(last_element)
-# returned_last_element = list1.remove_last()   #sprawdzenie remove_last
+# returned_last_element = list_.remove_last()   #test remove_last
 # print(returned_last_element)
 # assert last_element == returned_last_element
 
-# second_node = list1.node(at=1)
-# print(second_node)                            #sprawdzenie remove
-# list1.remove(n2)
+# second_node = list_.node(at=1)
+# print(second_node)                            #test remove
+# list_.remove(n2)
 
+# list_.len()                    #test len
+# list_.print()                #test print
 
-list1.wypisz()
+# assert str(list_) == '0 -> 1'
