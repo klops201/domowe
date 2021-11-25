@@ -58,16 +58,18 @@
 
 print("--------ZADANIE 6-------")
 def prime(n):
+    i = 2
     if n == 2:
-        return bool(n)
-    dzielniki = 0
-    if n/prime(n-1) == 0:
-        dzielniki += 1
-    if dzielniki == 2:
-        return bool(n)
-    else:
+        return bool(1)
+    if i + 1 == n:
+        return bool(1)
+    if n <= 2 and n > 0:
         return bool(None)
-print(prime(4))
+    if n % i == 0:
+        return bool(None)
+    i += 1
+    return prime(n)
+print(prime(19))
 print("\n")
 
 # print("--------ZADANIE 7-------")
